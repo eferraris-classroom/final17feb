@@ -114,11 +114,15 @@ void eliminar(Lista *list, int pos) {
 }
 
 Nodo *buscarxpos(Lista *list, int pos) {
-    Nodo * buscado=list->Prinodo;
-    for (int i = 0; i < pos - 1; ++i) {
-        buscado=buscado->sig;
+    if(pos<=list->cant){
+        Nodo * buscado=list->Prinodo;
+        for (int i = 0; i < pos - 1; ++i) {
+            buscado=buscado->sig;
+        }
+        return buscado;
+    } else{
+        return NULL;
     }
-    return buscado;
 }
 
 int tamaniolist(Lista *list) {

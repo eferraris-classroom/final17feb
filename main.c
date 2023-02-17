@@ -40,8 +40,13 @@ int main() {
     int posaliminar=6;
     eliminar(list1,posaliminar);
     imprimir(list1);
-    int posbuscado=1;
-    printf("el valor es %d del nodo en la posicion %d\n", (buscarxpos(list1, posbuscado))->valor, posbuscado);
+    int posbuscado=5;
+    if(buscarxpos(list1,posbuscado)!=NULL){
+        printf("el valor es %d del nodo en la posicion %d\n", (buscarxpos(list1, posbuscado))->valor, posbuscado);
+    } else{
+        printf("la posicion excede a la cantidad de nodos de la lista\n");
+    }
+
     printf("la lista tiene %d cantidad de nodos\n", tamaniolist(list1));
     return 0;
 }
