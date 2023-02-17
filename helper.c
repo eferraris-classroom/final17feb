@@ -29,25 +29,28 @@ Nodo *nuevonodo(int n) {
 }
 
 void insertar(Lista *list, Nodo *nodoainsertar) {
-    if(list->Prinodo==NULL){
-        list->Prinodo=nodoainsertar;
-        list->cant++;
-    } else{
-        Nodo *aux=list->Prinodo;
-        int i=0;
-        for (;aux!=NULL ;aux=aux->sig) {
-            if(aux->valor==nodoainsertar->valor){
-                i++;
-                break;
+    if(nodoainsertar->valor >= 0 && nodoainsertar->valor <= 127){
+        if(list->Prinodo==NULL){
+            list->Prinodo=nodoainsertar;
+            list->cant++;
+        } else{
+            Nodo *aux=list->Prinodo;
+            int i=0;
+            for (;aux!=NULL ;aux=aux->sig) {
+                if(aux->valor==nodoainsertar->valor){
+                    i++;
+                    break;
+                }
+            }
+            if(i==0){
+                aux=list->Prinodo;
+                list->Prinodo=nodoainsertar;
+                nodoainsertar->sig=aux;
+                list->cant++;
             }
         }
-        if(i==0){
-            aux=list->Prinodo;
-            list->Prinodo=nodoainsertar;
-            nodoainsertar->sig=aux;
-            list->cant++;
-        }
     }
+
 }
 
 int subconjunto(Lista *list1, Lista *list2) {
@@ -75,4 +78,49 @@ void imprimir(Lista *lista) {
     }
     printf("\n");
 
+}
+
+void insertaralfinal(Lista *list, Nodo *insertarfinal) {
+    if(list->Prinodo==NULL){
+        list->Prinodo=insertarfinal;
+    } else{
+        Nodo * ant;
+        for (ant=list->Prinodo;ant->sig!=NULL;ant=ant->sig) {}
+        ant->sig=insertarfinal;
+    }
+    list->cant++;
+}
+
+void eliminar(Lista *list, int pos) {
+    Nodo * limpiar;
+    if(pos<=list->cant){
+        if(pos==1){
+            limpiar=list->Prinodo;
+            list->Prinodo=list->Prinodo->sig;
+            free(limpiar);
+        } else{
+            Nodo * eliminar=list->Prinodo;
+            for (int i = 0; i < pos - 2; ++i) {
+                eliminar=eliminar->sig;
+            }
+            limpiar=eliminar->sig;
+            if(eliminar->sig!=NULL){
+                eliminar->sig=eliminar->sig->sig;
+            }
+            free(limpiar);
+        }
+        list->cant--;
+    }
+}
+
+Nodo *buscarxpos(Lista *list, int pos) {
+    Nodo * buscado=list->Prinodo;
+    for (int i = 0; i < pos - 1; ++i) {
+        buscado=buscado->sig;
+    }
+    return buscado;
+}
+
+int tamaniolist(Lista *list) {
+    return list->cant;
 }

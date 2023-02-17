@@ -9,7 +9,7 @@ int main() {
     insertar(list1, nuevonodo(3));
     insertar(list1, nuevonodo(23));
     insertar(list1, nuevonodo(4));
-
+    insertar(list1, nuevonodo(223));
     Lista * list2=nuevalista();
     insertar(list2, nuevonodo(1));
     insertar(list2, nuevonodo(2));
@@ -34,7 +34,14 @@ int main() {
             printf("no esta incluido\n");
         }
     }
-
-
+    imprimir(list1);
+    insertaralfinal(list1, nuevonodo(12));
+    imprimir(list1);
+    int posaliminar=6;
+    eliminar(list1,posaliminar);
+    imprimir(list1);
+    int posbuscado=1;
+    printf("el valor es %d del nodo en la posicion %d\n", (buscarxpos(list1, posbuscado))->valor, posbuscado);
+    printf("la lista tiene %d cantidad de nodos\n", tamaniolist(list1));
     return 0;
 }
