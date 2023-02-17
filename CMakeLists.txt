@@ -3,4 +3,4 @@ project(final17feb C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(final17feb main.c)
+add_executable(final17feb main.c helper.c helper.h)
